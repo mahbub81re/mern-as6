@@ -1,7 +1,7 @@
 import PostClient from "@/components/PostClient";
 
 async function getPost(slug: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/posts/${slug}`, {
+  const res = await fetch(`/api/posts/${slug}`, {
     cache: "no-store",
   });
   if (!res.ok) throw new Error("Failed to fetch post");
