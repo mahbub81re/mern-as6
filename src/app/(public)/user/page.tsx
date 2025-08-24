@@ -21,7 +21,7 @@ export default function UserDashboard() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    fetch("/api/user/posts")
+    fetch(`${process.env.NEXTAUTH_URL}/api/user/posts`)
       .then((res) => res.json())
       .then(setPosts)
       .catch(() => toast.error("❌ Failed to load posts"));
@@ -32,7 +32,7 @@ export default function UserDashboard() {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`/api/posts/${id}`, {
+      const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${id}`, {
         method: "DELETE",
       });
 
@@ -53,7 +53,7 @@ export default function UserDashboard() {
     const loadingToast = toast.loading("Updating status...");
 
     try {
-      const res = await fetch(`/api/posts/${id}`, {
+      const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

@@ -16,7 +16,7 @@ type Post = {
 };
 
 async function getPosts(query = ""): Promise<Post[]> {
-  const res = await fetch(`/api/posts?q=${query}`, {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts?q=${query}`, {
     cache: "no-store",
   });
 

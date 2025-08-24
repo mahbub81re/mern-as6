@@ -10,7 +10,7 @@ export default function RegisterPage() {
   async function handleRegister(e: React.FormEvent) {
     console.log(email,password);
     e.preventDefault();
-    await fetch("/api/auth/register", {
+    await fetch(`${process.env.NEXTAUTH_URL}/api/auth/register`, {
       method: "POST",
       body: JSON.stringify({name, email, password }),
     });

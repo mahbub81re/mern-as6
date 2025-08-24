@@ -33,7 +33,7 @@ export default function PostClient({ post }: { post: Post }) {
   },[])
 
    async function getComments(){
-     const res = await fetch(`/api/posts/${post._id}/comments`);
+     const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${post._id}/comments`);
      if (res.ok) {
        const data = await res.json();
        console.log(data)
@@ -74,7 +74,7 @@ export default function PostClient({ post }: { post: Post }) {
 
     const toastId = toast.loading("Adding comment...");
     try {
-      const res = await fetch(`/api/posts/${post._id}/comments`, {
+      const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${post._id}/comments`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content: commentInput }),

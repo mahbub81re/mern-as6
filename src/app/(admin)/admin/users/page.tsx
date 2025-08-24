@@ -16,13 +16,13 @@ export default function AdminUsersPage() {
   const [query, setQuery] = useState("");
 
   const fetchUsers = async () => {
-    const res = await fetch(`/api/admin/users?q=${query}`);
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/admin/users?q=${query}`);
     const data = await res.json();
     setUsers(data.users);
   };
 
   const toggleSuspend = async (id: string, suspended: boolean) => {
-    const res = await fetch(`/api/users/${id}`, {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/users/${id}`, {
       method: "PATCH",
       body: JSON.stringify({ suspended: !suspended }),
     });

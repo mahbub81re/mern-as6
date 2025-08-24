@@ -13,7 +13,7 @@ export default function EditorPage() {
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();
-    const res = await fetch(`/api/posts`, {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title,cover, contentHTML: content }),

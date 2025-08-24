@@ -20,13 +20,13 @@ export default function AdminPostsPage() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   const fetchPosts = async () => {
-    const res = await fetch("/api/admin/posts");
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/admin/posts`);
     const data = await res.json();
     setPosts(data.posts);
   };
 
   const deletePost = async (id: string) => {
-    const res = await fetch(`/api/posts/${id}`, { method: "DELETE" });
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${id}`, { method: "DELETE" });
     if (res.ok) {
       toast.success("Post deleted");
       fetchPosts();

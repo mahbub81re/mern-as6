@@ -13,13 +13,13 @@ export default function AdminCommentsPage() {
   const [comments, setComments] = useState<Comments[]>([]);
 
   const fetchComments = async () => {
-    const res = await fetch("/api/admin/comments");
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/admin/comments`);
     const data = await res.json();
     setComments(data.comments);
   };
 
   const deleteComment = async (id: string) => {
-    const res = await fetch(`/api/comments/${id}`, { method: "DELETE" });
+    const res = await fetch(`${process.env.NEXTAUTH_URL}{process.env.NEXTAUTH_URL}/api/comments/${id}`, { method: "DELETE" });
     if (res.ok) {
       toast.success("Comment deleted");
       fetchComments();
@@ -27,7 +27,7 @@ export default function AdminCommentsPage() {
   };
 
   const suspendComment = async (id: string, suspended: boolean) => {
-    const res = await fetch(`/api/comments/${id}`, {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/comments/${id}`, {
       method: "PATCH",
       body: JSON.stringify({ suspended: !suspended }),
     });
